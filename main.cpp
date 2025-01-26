@@ -1,35 +1,34 @@
-#include "LCRS.h"
+#include "SBT.h"
 
 int main() {
 
-	LCRSNode* Root = LCRS_CreateNode('A');
-	LCRSNode* B = LCRS_CreateNode('B');
-	LCRSNode* C = LCRS_CreateNode('C');
-	LCRSNode* D = LCRS_CreateNode('D');
-	LCRSNode* E = LCRS_CreateNode('E');
-	LCRSNode* F = LCRS_CreateNode('F');
-	LCRSNode* G= LCRS_CreateNode('G');
-	LCRSNode* H = LCRS_CreateNode('H');
-	LCRSNode* I= LCRS_CreateNode('I');
-	LCRSNode* J= LCRS_CreateNode('J');
-	LCRSNode* K= LCRS_CreateNode('K');
+	SBTNode* A = SBTNode_CreateNode('A');
+	SBTNode* B = SBTNode_CreateNode('B');
+	SBTNode* C = SBTNode_CreateNode('C');
+	SBTNode* D = SBTNode_CreateNode('D');
+	SBTNode* E = SBTNode_CreateNode('E');
+	SBTNode* F = SBTNode_CreateNode('F');
+	SBTNode* G = SBTNode_CreateNode('G');
 
-	LCRS_AddChild(Root, B);
-	LCRS_AddChild(B, C);
-	LCRS_AddChild(B, D);
-	LCRS_AddChild(D, E);
-	LCRS_AddChild(D, F);
+	A->Left = B;
+	B->Left = C;
+	B->Right = D;
+	
+	A->Right = E;
+	E->Left = F;
+	E->Right = G;
 
-	LCRS_AddChild(Root, G);
-	LCRS_AddChild(G, H);
+	printf("PreOrder: ");
+	SBTNode_PreorderPrintTree(A);
+	printf("\n\n");
+	printf("InOrder: ");
+	SBTNode_InorderPrintTree(A);
+	printf("\n\n");
+	printf("PostOrder: ");
+	SBTNode_PostorderPrintTree(A);
+	printf("\n\n");
 
-	LCRS_AddChild(Root, I);
-	LCRS_AddChild(I, J);
-	LCRS_AddChild(J, K);
-
-	LCRS_PrintTree(Root,0);
-	LCRS_DestroyTree(Root);
-
+	SBTNode_DestroyTree(A);
 
 	return 0;
 }
